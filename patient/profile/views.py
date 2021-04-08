@@ -3,8 +3,11 @@ from rest_framework.generics import RetrieveAPIView
 from rest_framework.response import Response
 from rest_framework.permissions import IsAuthenticated
 from rest_framework_jwt.authentication import JSONWebTokenAuthentication
-from ..user.serializers import UserRegistrationSerializer
-from .models import UserProfile
+from ..user.serializers import UserRegistrationSerializer,FileUploadSerializer
+from .models import UserProfile,FileUpload
+
+from rest_framework.parsers import FormParser, MultiPartParser
+from rest_framework.viewsets import ModelViewSet
 
 
 class UserProfileView(RetrieveAPIView):
@@ -27,7 +30,7 @@ class UserProfileView(RetrieveAPIView):
                     'q4': user_profile.q4,
                     'q5': user_profile.q5,
                     'docfile': user_profile.docfile,
-                    'imgDoc':user_profile.imgDoc,
+                    # 'imgDoc':user_profile.imgDoc,
                     
                     }]
                 }
@@ -41,3 +44,14 @@ class UserProfileView(RetrieveAPIView):
                 'error': str(e)
                 }
         return Response(response, status=status_code)
+
+
+class FileUploadViewSet(ModelViewSet):
+    
+    queryset = FileUpload.objects.all()
+    serializer_class = FileUploadSerializer
+    parser_classes = (MultiPartParser, FormParser,)
+
+    def perform_create(self, serializer):
+        serializer.save(owner=self.request.user,
+                       datafile=self.request.data.get('datafile'))

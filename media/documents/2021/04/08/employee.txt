@@ -1,0 +1,22 @@
+skills_info : python
+ 
+education : intermidate
+	    graduate
+
+select_experience : fresher
+
+select_emp_type : full time
+
+membership : free
+	     gold
+
+
+name : test
+
+dob : charfield
+
+comm_address: mahesh pu college
+
+pincode:
+
+phone_no :
