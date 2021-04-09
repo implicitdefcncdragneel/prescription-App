@@ -23,19 +23,19 @@ class UserManager(BaseUserManager):
         user.save(using=self._db)
         return user
 
-    # def create_superuser(self, email, password):
-    #     """
-    #     Create and return a `User` with superuser (admin) permissions.
-    #     """
-    #     if password is None:
-    #         raise TypeError('Superusers must have a password.')
+    def create_superuser(self, email, password):
+        """
+        Create and return a `User` with superuser (admin) permissions.
+        """
+        if password is None:
+            raise TypeError('Superusers must have a password.')
 
-    #     user = self.create_user(email, password)
-    #     user.is_superuser = True
-    #     user.is_staff = True
-    #     user.save()
+        user = self.create_user(email, password)
+        user.is_superuser = True
+        user.is_staff = True
+        user.save()
 
-    #     return user
+        return user
 
 
 class User(AbstractBaseUser):

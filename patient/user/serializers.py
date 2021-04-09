@@ -2,7 +2,7 @@ from django.contrib.auth import authenticate
 from django.contrib.auth.models import update_last_login
 from rest_framework import serializers
 from rest_framework_jwt.settings import api_settings
-from ..profile.models import UserProfile
+from ..profile.models import UserProfile,FileUpload
 from .models import User
 
 
@@ -36,9 +36,9 @@ class UserRegistrationSerializer(serializers.ModelSerializer):
             q2=profile_data['q2'],
             q3=profile_data['q3'],
             q4=profile_data['q4'],
-            q5=profile_data['gender'],
+            q5=profile_data['q5'],
             docfile=profile_data['docfile'],
-            imgDoc=profile_data['imgDoc'],
+            # imgDoc=profile_data['imgDoc'],
             
             
         )
@@ -70,3 +70,13 @@ class UserLoginSerializer(serializers.Serializer):
             'email':user.email,
             'token': jwt_token
         }
+
+class FileUploadSerializer(serializers.HyperlinkedModelSerializer):
+    owner = serializers.SlugRelatedField(
+        read_only=True,
+        slug_field='id'
+    )
+
+    class Meta:
+        model = FileUpload
+        read_only_fields = ('created', 'datafile', 'owner','imagefile')

@@ -20,14 +20,25 @@ class UserProfile(models.Model):
     imgDoc = models.ImageField(blank=True, default="",upload_to='images/')
 
 
-    def __str__(self):
-        return self.id
+    # def __str__(self):
+    #     return self.id
 
     class Meta:
         '''
         to set table name in database
         '''
         db_table = "profile_patient"
+
+class FileUpload(models.Model):
+    created = models.DateTimeField(auto_now_add=True)
+    owner = models.ForeignKey(User,on_delete=models.CASCADE,)
+    datafile = models.FileField()
+    imagefile= models.ImageField(null=False)
+
+
+# class TaskImage(models.Model):
+#     task = models.ForeignKey(User, on_delete=models.CASCADE)
+#     image = models.FileField(blank=True)
 
 
 
