@@ -17,7 +17,7 @@ class UserProfile(models.Model):
 
     docfile = models.FileField(blank=True, default="",upload_to='documents/%Y/%m/%d')
 
-    # imgDoc = models.ImageField(blank=True, default="",upload_to='images/')
+    imgDoc = models.ImageField(blank=True, default="",upload_to='images/')
 
 
     # def __str__(self):
@@ -33,6 +33,7 @@ class FileUpload(models.Model):
     created = models.DateTimeField(auto_now_add=True)
     owner = models.ForeignKey(User,on_delete=models.CASCADE,)
     datafile = models.FileField()
+    imagefile= models.ImageField(null=False)
 
 
 # class TaskImage(models.Model):

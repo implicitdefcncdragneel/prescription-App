@@ -30,7 +30,7 @@ class UserProfileView(RetrieveAPIView):
                     'q4': user_profile.q4,
                     'q5': user_profile.q5,
                     'docfile': user_profile.docfile,
-                    # 'imgDoc':user_profile.imgDoc,
+                    'imgDoc':user_profile.imgDoc,
                     
                     }]
                 }
@@ -54,4 +54,4 @@ class FileUploadViewSet(ModelViewSet):
 
     def perform_create(self, serializer):
         serializer.save(owner=self.request.user,
-                       datafile=self.request.data.get('datafile'))
+                       datafile=self.request.data.get('datafile'), imagefile=self.request.data.get('imagefile'))

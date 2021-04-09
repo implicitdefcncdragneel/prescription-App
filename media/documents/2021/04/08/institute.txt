@@ -1,0 +1,29 @@
+Name:
+Gender
+Year of birth
+Mobile
+WhatsApp
+Email
+City
+Area
+Pin Code
+Address
+
+
+class type
+
+
+segment
+
+
+Fees
+
+name : test
+
+dob : charfield
+
+comm_address: mahesh pu college
+
+pincode:
+
+phone_no :

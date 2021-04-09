@@ -79,4 +79,4 @@ class FileUploadSerializer(serializers.HyperlinkedModelSerializer):
 
     class Meta:
         model = FileUpload
-        read_only_fields = ('created', 'datafile', 'owner')
+        read_only_fields = ('created', 'datafile', 'owner','imagefile')
